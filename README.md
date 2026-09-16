@@ -178,7 +178,7 @@ for details.
 
 **ABCrypter — Cryptography Engineering Platform**
 
-*Encrypt anything. Trust no one.*
+*Encrypt anything. Trust no one!*
 
 Made with 🦀 by [Lancelotech](https://github.com/lancelotech-app)
 
