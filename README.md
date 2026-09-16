@@ -15,7 +15,7 @@ A quiet, offline platform for people and businesses who take their data seriousl
 [![Rust](https://img.shields.io/badge/built%20with-Rust-ff7043?style=flat-square&logo=rust&logoColor=white)](https://www.rust-lang.org/)
 [![License](https://img.shields.io/badge/license-Proprietary-3ecf8e?style=flat-square)](#license)
 
-[**Download**](#-download) · [**Features**](#-features) · [**Pricing**](#-pricing) · [**Enterprise**](#-enterprise--professionals) · [**Website**](https://lancelotech-app.github.io/abcrypter/)
+[**Download**](#-download) · [**Features**](#-features) · [**Pricing**](#-pricing) · [**Enterprise**](#-enterprise--professionals) · [**Page**](https://lancelotech-app.github.io/abcrypter/)
 
 </div>
 
@@ -43,11 +43,11 @@ Native builds for every desktop. Pick the version that matches your system.
 |---|---|---|
 | **Windows** | x64 (64-bit) | ✅ Available |
 | **Windows** | x86 (32-bit) | ✅ Available |
-| **macOS** | Apple Silicon (arm64) | (SOON) |
-| **macOS** | Intel (x64) | (SOON) |
-| **Linux** | AppImage (universal) | (SOON) |
-| **Linux** | `.deb` (Debian / Ubuntu) | (SOON) |
-| **Linux** | `.rpm` (Fedora / RHEL) | (SOON) |
+| **macOS** | Apple Silicon (arm64) | ❌ Coming soon |
+| **macOS** | Intel (x64) | ❌ Coming soon |
+| **Linux** | AppImage (universal) | ❌ Coming soon |
+| **Linux** | `.deb` (Debian / Ubuntu) | ❌ Coming soon |
+| **Linux** | `.rpm` (Fedora / RHEL) | ❌ Coming soon |
 
 👉 **[View all releases →](https://github.com/lancelotech-app/abcrypter/releases)**
 
@@ -156,7 +156,7 @@ custom quote — adapted to your specific needs.
 
 | Resource | Link |
 |---|---|
-| 🌐 Official website | [lancelotech-app.github.io/abcrypter](https://lancelotech-app.github.io/abcrypter/) |
+| 🌐 Official page | [lancelotech-app.github.io/abcrypter](https://lancelotech-app.github.io/abcrypter/) |
 | 📦 Latest release | [github.com/lancelotech-app/abcrypter/releases](https://github.com/lancelotech-app/abcrypter/releases) |
 | 🐛 Report a bug | [Issues](https://github.com/lancelotech-app/abcrypter/issues) |
 | 💬 Discussions | [GitHub Discussions](https://github.com/lancelotech-app/abcrypter/discussions) |
