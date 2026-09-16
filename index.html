@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ABCrypter — Cryptography Engineering Platform</title>
+  <style>
+    /* =========================================================
+       ABCrypter — Presentation / Download page
+       Style: minimal, airy, quality-focused, Rust-accented
+       ========================================================= */
+
+    :root {
+      --bg-0: #0b0e13;
+      --bg-1: #12161d;
+      --bg-2: #1a1f28;
+      --bg-3: #232934;
+      --border: #262d38;
+      --border-strong: #3a4452;
+
+      --text-0: #eef2f7;
+      --text-1: #a7b1c0;
+      --text-2: #6e7a8c;
+
+      --accent: #4f8cff;
+      --accent-hover: #6ba0ff;
+      --accent-soft: rgba(79, 140, 255, 0.10);
+
+      --rust: #ff7043;
+      --rust-soft: rgba(255, 112, 67, 0.12);
+      --rust-border: rgba(255, 112, 67, 0.35);
+
+      --gold: #f5b849;
+      --gold-soft: rgba(245, 184, 73, 0.10);
+      --gold-border: rgba(245, 184, 73, 0.35);
+
+      --ok: #3ecf8e;
+
+      --radius: 14px;
+      --radius-sm: 8px;
+
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.45);
+      --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.55);
+
+      --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Helvetica, Arial, sans-serif;
+      --mono: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular,
+        Menlo, Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      background: var(--bg-0);
+      color: var(--text-0);
+      font-family: var(--font);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Fond subtil */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 900px 500px at 50% -10%,
+          rgba(79, 140, 255, 0.08), transparent 60%),
+        radial-gradient(ellipse 700px 400px at 90% 30%,
+          rgba(255, 112, 67, 0.04), transparent 60%);
+      z-index: 0;
+    }
+
+    body > * { position: relative; z-index: 1; }
+
+    /* =========================================================
+       LAYOUT
+       ========================================================= */
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 80px 28px 100px;
+      display: flex;
+      flex-direction: column;
+      gap: 96px;
+    }
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 22px;
+      padding-top: 20px;
+    }
+
+    .logo {
+      width: 96px;
+      height: 96px;
+      border-radius: 24px;
+      object-fit: cover;
+      background: var(--bg-1);
+      box-shadow: var(--shadow-md);
+      margin-bottom: 4px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: 52px;
+      font-weight: 700;
+      letter-spacing: -1.4px;
+      line-height: 1.1;
+      background: linear-gradient(135deg,
+        var(--text-0) 0%,
+        var(--accent) 70%,
+        var(--rust) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero .positioning {
+      display: inline-block;
+      font-size: 13px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-2);
+      font-weight: 600;
+    }
+
+    .hero .tagline {
+      margin: 0;
+      font-size: 18px;
+      color: var(--text-1);
+      max-width: 640px;
+      line-height: 1.6;
+    }
+
+    .hero .meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--bg-1);
+      font-size: 12.5px;
+      color: var(--text-1);
+      font-family: var(--mono);
+    }
+
+    .hero .meta .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--ok);
+      box-shadow: 0 0 0 3px rgba(62, 207, 142, 0.15);
+    }
+
+    /* =========================================================
+       SECTION TITLES
+       ========================================================= */
+    .section-head {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .section-head .kicker {
+      font-size: 11.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: -0.6px;
+    }
+
+    .section-head p {
+      margin: 0;
+      font-size: 15px;
+      color: var(--text-2);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* =========================================================
+       DOWNLOAD CARDS
+       ========================================================= */
+    .downloads {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .download-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      padding: 34px 22px 26px;
+      background: var(--bg-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s ease, border-color 0.2s ease,
+        background 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .download-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius);
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 0%,
+        var(--accent-soft), transparent 65%);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .download-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--border-strong);
+      background: var(--bg-2);
+      box-shadow: var(--shadow-md);
+    }
+
+    .download-card:hover::after { opacity: 1; }
+
+    .download-icon {
+      width: 56px;
+      height: 56px;
+      color: var(--text-0);
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .download-card:hover .download-icon {
+      color: var(--accent);
+      transform: scale(1.06);
+    }
+
+    .download-name {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text-0);
+    }
+
+    .download-info {
+      font-size: 12px;
+      color: var(--text-2);
+      font-family: var(--mono);
+      letter-spacing: 0.2px;
+    }
+
+/* =========================================================
+   DOWNLOAD CHOICES (archi picker)
+   ========================================================= */
+
+.download-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.download-choice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-0);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s ease, border-color 0.15s ease,
+    transform 0.1s ease;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.download-choice:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.download-choice:active {
+  transform: translateY(1px);
+}
+
+.choice-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-0);
+  white-space: nowrap;
+}
+
+.choice-meta {
+  font-size: 11px;
+  color: var(--text-2);
+  font-family: var(--mono);
+  margin-left: auto;
+  margin-right: 6px;
+  letter-spacing: 0.3px;
+}
+
+.choice-arrow {
+  font-size: 13px;
+  color: var(--text-2);
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.download-choice:hover .choice-arrow {
+  color: var(--accent);
+  transform: translateX(2px);
+}
+
+/* La carte entière ne doit plus être cliquable */
+.download-card {
+  cursor: default;
+}
+
+/* Optionnel : garder l'icône en surbrillance quand on hover la carte */
+.download-card:hover .download-icon {
+  color: var(--accent);
+  transform: scale(1.06);
+}
+
+    /* =========================================================
+       QUALITY (3 principes)
+       ========================================================= */
+    .quality {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .quality-item {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 26px 22px;
+      background: var(--bg-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .quality-item:hover {
+      border-color: var(--border-strong);
+      background: var(--bg-2);
+    }
+
+    .quality-num {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--text-2);
+      letter-spacing: 1.5px;
+    }
+
+    .quality-item h3 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-0);
+      letter-spacing: -0.2px;
+    }
+
+    .quality-item p {
+      margin: 0;
+      font-size: 13.5px;
+      color: var(--text-2);
+      line-height: 1.65;
+    }
+
+    /* =========================================================
+       BEFORE / AFTER DEMO
+       ========================================================= */
+    .demo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .demo-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 20px;
+      background: var(--bg-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .demo-panel.after {
+      border-color: var(--rust-border);
+      background: linear-gradient(180deg,
+        rgba(255, 112, 67, 0.05) 0%,
+        var(--bg-1) 60%);
+    }
+
+    .demo-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: var(--text-2);
+    }
+
+    .demo-label .bullet {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--text-2);
+    }
+
+    .demo-panel.after .demo-label { color: var(--rust); }
+    .demo-panel.after .demo-label .bullet {
+      background: var(--rust);
+      box-shadow: 0 0 0 3px rgba(255, 112, 67, 0.18);
+    }
+
+    .demo-content {
+      font-family: var(--mono);
+      font-size: 12.5px;
+      line-height: 1.7;
+      color: var(--text-1);
+      word-break: break-all;
+      padding: 14px 16px;
+      background: #0a0d12;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      min-height: 84px;
+      white-space: pre-wrap;
+    }
+
+    .demo-panel.after .demo-content {
+      color: var(--rust);
+      font-size: 11.5px;
+    }
+
+    .demo-caption {
+      font-size: 12px;
+      color: var(--text-2);
+      line-height: 1.55;
+    }
+
+    /* =========================================================
+       RUST SECTION
+       ========================================================= */
+    .rust-section {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      padding: 48px 44px;
+      background: linear-gradient(135deg,
+        rgba(255, 112, 67, 0.05) 0%,
+        rgba(79, 140, 255, 0.03) 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .rust-section::before {
+      content: "";
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle,
+        rgba(255, 112, 67, 0.14), transparent 70%);
+      pointer-events: none;
+    }
+
+    .rust-head {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-width: 780px;
+      position: relative;
+    }
+
+    .rust-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--rust);
+      font-weight: 700;
+    }
+
+    .rust-kicker .crab {
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .rust-head h2 {
+      margin: 0;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.7px;
+      line-height: 1.15;
+    }
+
+    .rust-head p {
+      margin: 0;
+      font-size: 15px;
+      color: var(--text-1);
+      line-height: 1.7;
+    }
+
+    .rust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      position: relative;
+    }
+
+    .rust-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 20px 18px;
+      background: rgba(18, 22, 29, 0.7);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      backdrop-filter: blur(6px);
+    }
+
+    .rust-item h4 {
+      margin: 0;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-0);
+      letter-spacing: -0.1px;
+    }
+
+    .rust-item p {
+      margin: 0;
+      font-size: 12.5px;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    /* =========================================================
+       SERVICES
+       ========================================================= */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .service {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 22px 20px;
+      background: var(--bg-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      transition: border-color 0.2s ease, background 0.2s ease,
+        transform 0.15s ease;
+    }
+
+    .service:hover {
+      border-color: var(--border-strong);
+      background: var(--bg-2);
+      transform: translateY(-2px);
+    }
+
+    .service-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .service h3 {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-0);
+      letter-spacing: -0.1px;
+    }
+
+    .service p {
+      margin: 0;
+      font-size: 12.5px;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    /* =========================================================
+       PRICING
+       ========================================================= */
+    .pricing {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      max-width: 760px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .price-card {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding: 30px 26px;
+      background: var(--bg-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .price-card.featured {
+      border-color: var(--gold-border);
+      background: linear-gradient(180deg,
+        rgba(245, 184, 73, 0.06) 0%,
+        var(--bg-1) 60%);
+    }
+
+    .price-card.featured::before {
+      content: "PREMIUM";
+      position: absolute;
+      top: 16px;
+      right: -34px;
+      transform: rotate(45deg);
+      background: var(--gold);
+      color: #1a1300;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      padding: 4px 38px;
+    }
+
+    .price-name {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: var(--text-2);
+    }
+
+    .price-card.featured .price-name { color: var(--gold); }
+
+    .price-amount {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--text-0);
+      letter-spacing: -0.6px;
+    }
+
+    .price-amount small {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-2);
+      margin-left: 4px;
+    }
+
+    .price-features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .price-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      font-size: 13px;
+      color: var(--text-1);
+      line-height: 1.55;
+    }
+
+    .price-features li::before {
+      content: "✓";
+      color: var(--ok);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .price-card.featured .price-features li::before { color: var(--gold); }
+
+    /* =========================================================
+       CONTACT PREMIUM
+       ========================================================= */
+    .contact-premium {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 14px;
+      padding: 40px 28px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg,
+        rgba(245, 184, 73, 0.06) 0%,
+        rgba(79, 140, 255, 0.05) 100%);
+      border: 1px solid var(--gold-border);
+    }
+
+    .contact-premium .kicker {
+      font-size: 11.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .contact-premium h2 {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+    }
+
+    .contact-premium p {
+      margin: 0;
+      font-size: 14.5px;
+      color: var(--text-1);
+      max-width: 640px;
+      line-height: 1.7;
+    }
+
+    .contact-btn {
+      margin-top: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 22px;
+      border-radius: var(--radius-sm);
+      background: var(--gold);
+      color: #1a1300;
+      font-size: 13.5px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.05s ease;
+    }
+
+    .contact-btn:hover { background: #ffcc5e; }
+    .contact-btn:active { transform: translateY(1px); }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+    .footer {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text-2);
+    }
+
+    .footer a {
+      color: var(--text-1);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .footer a:hover { color: var(--accent); }
+
+    .footer .sep { color: var(--border-strong); margin: 0 6px; }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+    @media (max-width: 860px) {
+      .page { padding: 56px 20px 80px; gap: 72px; }
+      .hero h1 { font-size: 38px; letter-spacing: -1px; }
+      .hero .tagline { font-size: 16px; }
+      .downloads,
+      .quality,
+      .services,
+      .rust-grid { grid-template-columns: 1fr; }
+      .demo { grid-template-columns: 1fr; }
+      .pricing { grid-template-columns: 1fr; }
+      .rust-section { padding: 32px 24px; }
+      .rust-head h2 { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <!--<img src="logo.png" alt="ABCrypter logo" class="logo" />-->
+
+      <span class="positioning">Cryptography Engineering Platform</span>
+
+      <h1>ABCrypter</h1>
+
+      <p class="tagline">
+        Encrypt anything. Trust no one.<br />
+        A quiet, offline platform for people and businesses who take their data seriously.
+      </p>
+
+      <div class="meta">
+        <span class="dot"></span>
+        <span>v1.0.0</span>
+        <span>·</span>
+        <span>Windows / macOS / Linux</span>
+        <span>·</span>
+        <span>100% offline</span>
+      </div>
+    </section>
+
+<!-- ============ DOWNLOADS ============ -->
+<section>
+  <div class="section-head">
+    <span class="kicker">Download</span>
+    <h2>Choose your platform</h2>
+    <p>Native builds for every desktop. Pick the version that matches your system.</p>
+  </div>
+
+  <div class="downloads">
+
+    <!-- WINDOWS -->
+    <div class="download-card">
+      <svg class="download-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M3 5.5 10.5 4.5v7H3v-6zm0 13 7.5 1v-7H3v6zm8.5 1.1L21 21V12.5h-9.5v7.1zM11.5 4.3 21 3v8.5h-9.5V4.3z"/>
+      </svg>
+      <div class="download-name">Windows</div>
+      <div class="download-info">Windows 10 / 11</div>
+
+      <div class="download-choices">
+        <a class="download-choice"
+           href="https://abcrypter.com/download/windows-x64"
+           target="_blank" rel="noreferrer">
+          <span class="choice-label">64-bit</span>
+          <span class="choice-meta">download x64</span>
+          <span class="choice-arrow">→</span>
+        </a>
+        <a class="download-choice"
+           href="https://abcrypter.com/download/windows-x86"
+           target="_blank" rel="noreferrer">
+          <span class="choice-label">32-bit</span>
+          <span class="choice-meta">download x86</span>
+          <span class="choice-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- MACOS -->
+    <div class="download-card">
+      <svg class="download-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M16.36 12.6c0-2.4 1.96-3.55 2.05-3.6-1.12-1.63-2.85-1.85-3.47-1.88-1.48-.15-2.88.87-3.63.87-.75 0-1.9-.85-3.13-.83-1.6.02-3.08.93-3.9 2.36-1.67 2.9-.43 7.18 1.2 9.53.8 1.15 1.75 2.44 3 2.4 1.2-.05 1.66-.78 3.12-.78 1.45 0 1.86.78 3.12.75 1.28-.02 2.1-1.17 2.9-2.32.9-1.32 1.28-2.6 1.3-2.67-.03-.02-2.5-.97-2.53-3.83zM13.8 5.7c.65-.8 1.1-1.9.97-3-.94.04-2.08.63-2.76 1.42-.6.7-1.14 1.83-.99 2.9 1.05.08 2.13-.53 2.78-1.32z"/>
+      </svg>
+      <div class="download-name">macOS (soon)</div>
+      <div class="download-info">macOS 12+</div>
+
+      <div class="download-choices">
+        <a class="download-choice"
+
+           target="_blank" rel="noreferrer">
+          <span class="choice-label">Apple Silicon</span>
+          <span class="choice-meta">arm64</span>
+          <span class="choice-arrow">→</span>
+        </a>
+        <a class="download-choice"
+
+           target="_blank" rel="noreferrer">
+          <span class="choice-label">Intel</span>
+          <span class="choice-meta">x64</span>
+          <span class="choice-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- LINUX -->
+    <div class="download-card">
+      <svg class="download-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2c-2.2 0-3.5 1.6-3.5 3.8 0 1 .1 1.7.1 2.2-.7.7-1.8 2-2.5 3.4-.6 1.1-1.2 2.4-1.2 3.5 0 .5.2.9.6 1.1-.2.6-.3 1.2-.3 1.8 0 1.4.9 2.4 2.4 2.4.6 0 1.1-.1 1.6-.3.5.6 1.4 1 2.8 1s2.3-.4 2.8-1c.5.2 1 .3 1.6.3 1.5 0 2.4-1 2.4-2.4 0-.6-.1-1.2-.3-1.8.4-.2.6-.6.6-1.1 0-1.1-.6-2.4-1.2-3.5-.7-1.4-1.8-2.7-2.5-3.4 0-.5.1-1.2.1-2.2C15.5 3.6 14.2 2 12 2zm-1.8 4.4c-.4 0-.7-.4-.7-.9s.3-.9.7-.9.7.4.7.9-.3.9-.7.9zm3.6 0c-.4 0-.7-.4-.7-.9s.3-.9.7-.9.7.4.7.9-.3.9-.7.9zM12 9.5c.9 0 1.8.4 1.8.9s-.9 1.2-1.8 1.2-1.8-.7-1.8-1.2.9-.9 1.8-.9z"/>
+      </svg>
+      <div class="download-name">Linux (soon)</div>
+      <div class="download-info">Universal</div>
+
+      <div class="download-choices">
+        <a class="download-choice"
+
+           target="_blank" rel="noreferrer">
+          <span class="choice-label">AppImage</span>
+          <span class="choice-meta">universal</span>
+          <span class="choice-arrow">→</span>
+        </a>
+        <a class="download-choice"
+
+           target="_blank" rel="noreferrer">
+          <span class="choice-label">.deb</span>
+          <span class="choice-meta">Debian / Ubuntu</span>
+          <span class="choice-arrow">→</span>
+        </a>
+        <a class="download-choice"
+
+           target="_blank" rel="noreferrer">
+          <span class="choice-label">.rpm</span>
+          <span class="choice-meta">Fedora / RHEL</span>
+          <span class="choice-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+    <!-- ============ QUALITY ============ -->
+    <section>
+      <div class="section-head">
+        <span class="kicker">Principles</span>
+        <h2>Built without compromise</h2>
+        <p>Three principles that shape every line of code.</p>
+      </div>
+
+      <div class="quality">
+        <div class="quality-item">
+          <div class="quality-num">01</div>
+          <h3>Offline by default</h3>
+          <p>
+            ABCrypter never phones home. No telemetry, no analytics, no
+            network calls. Your data stays where it belongs — on your machine.
+          </p>
+        </div>
+        <div class="quality-item">
+          <div class="quality-num">02</div>
+          <h3>No bloat, no ads</h3>
+          <p>
+            A small, focused tool that does one thing well. No accounts to
+            create, no upsells, no distractions.
+          </p>
+        </div>
+        <div class="quality-item">
+          <div class="quality-num">03</div>
+          <h3>Fast and lightweight</h3>
+          <p>
+            Small binaries, instant startup, minimal memory footprint.
+            Native performance — not an Electron app in disguise.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BEFORE / AFTER DEMO ============ -->
+    <section>
+      <div class="section-head">
+        <span class="kicker">See it in action</span>
+        <h2>From readable to unbreakable</h2>
+        <p>
+          Same input, unique output every time — thanks to a randomized
+          payload structure. No two encryptions are ever identical.
+        </p>
+      </div>
+
+      <div class="demo">
+        <!-- AVANT -->
+        <div class="demo-panel">
+          <div class="demo-label">
+            <span class="bullet"></span>
+            Before — plain text
+          </div>
+          <div class="demo-content">Sk-9f2b7e1c4a80d3f6
+My API key for production</div>
+          <div class="demo-caption">
+            Your sensitive data, readable by anyone with access to the file.
+          </div>
+        </div>
+
+        <!-- APRÈS -->
+        <div class="demo-panel after">
+          <div class="demo-label">
+            <span class="bullet"></span>
+            After — ABCrypter encrypted
+          </div>
+          <div class="demo-content">0xA4, 0x1F, 0x8C, 0x77, 0xE2, 0x39, 0xC5, 0x0D,
+0x62, 0xFU, 0x43, 0x91, 0xCE, 0x18, 0x7B, 0x25,
+0xD8, 0x2A, 0x9E, 0x04, 0x36, 0xC1, 0xAF, 0x73,
+0xE0, 0x4B, 0x81, 0x1C, 0x92, 0x6D, 0xF5, 0x27</div>
+          <div class="demo-caption">
+            A unique, password-protected block. Useless without the key —
+            even if intercepted or stored in the cloud.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RUST ============ -->
+    <section class="rust-section">
+      <div class="rust-head">
+        <span class="rust-kicker">
+          <span class="crab">🦀</span>
+          Written in Rust
+        </span>
+        <h2>Safety you can trust.</h2>
+        <p>
+          ABCrypter is built entirely in Rust — the language chosen by Mozilla,
+          AWS, Cloudflare, Microsoft, and the Linux kernel for the most
+          security-critical systems on the planet. It is the industry standard
+          for memory safety, performance, and reliability.
+        </p>
+      </div>
+
+      <div class="rust-grid">
+        <div class="rust-item">
+          <h4>Memory-safe by design</h4>
+          <p>
+            Rust eliminates entire classes of vulnerabilities at compile time —
+            buffer overflows, use-after-free, data races. Bugs that plague C
+            and C++ simply cannot compile.
+          </p>
+        </div>
+        <div class="rust-item">
+          <h4>Zero undefined behavior</h4>
+          <p>
+            Every operation is verified before the binary is even built.
+            No hidden runtime surprises, no unpredictable memory layout,
+            no silent corruption.
+          </p>
+        </div>
+        <div class="rust-item">
+          <h4>Native performance</h4>
+          <p>
+            Compiled directly to machine code with no interpreter, no VM,
+            no garbage collector. The same speed class as C — with none of
+            the risks.
+          </p>
+        </div>
+        <div class="rust-item">
+          <h4>Trusted by the industry</h4>
+          <p>
+            Used in production by Dropbox, Discord, Figma, Cloudflare,
+            Mozilla Firefox, and the Linux kernel itself. Battle-tested
+            at global scale.
+          </p>
+        </div>
+        <div class="rust-item">
+          <h4>Auditable &amp; minimal</h4>
+          <p>
+            A small, dependency-conscious codebase. Fewer moving parts means
+            fewer attack surfaces — and easier security review.
+          </p>
+        </div>
+        <div class="rust-item">
+          <h4>Cross-platform native</h4>
+          <p>
+            One codebase, three platforms. Real native builds for Windows,
+            macOS, and Linux — not a web wrapper pretending to be a desktop app.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SERVICES ============ -->
+    <section>
+      <div class="section-head">
+        <span class="kicker">What ABCrypter does</span>
+        <h2>A complete cryptography toolkit</h2>
+        <p>
+          From a single encrypted message to enterprise-grade infrastructure —
+          ABCrypter scales with your needs.
+        </p>
+      </div>
+
+      <div class="services">
+        <div class="service">
+          <div class="service-icon">🔐</div>
+          <h3>Unique codes, every time</h3>
+          <p>Maximum security. Every generated block is unique. No two encryptions ever match — even for the same input.</p>
+        </div>
+
+        <div class="service">
+          <div class="service-icon">🗝️</div>
+          <h3>Protect keys &amp; sensitive data</h3>
+          <p>Secure your API keys, credentials, and confidential notes — online and offline.</p>
+        </div>
+
+        <div class="service">
+          <div class="service-icon">☁️</div>
+          <h3>Cloud-safe encryption <span style="color:var(--gold);font-size:11px;font-weight:700;">PREMIUM</span></h3>
+          <p>Encrypt your data <em>before</em> it leaves your machine. Safe for any cloud storage.</p>
+        </div>
+
+        <div class="service">
+          <div class="service-icon">📦</div>
+          <h3>Integrated encrypted cloud <span style="color:var(--gold);font-size:11px;font-weight:700;">PREMIUM</span></h3>
+          <p>Save and store your information in encrypted form, accessible only with your key.</p>
+        </div>
+
+        <div class="service">
+          <div class="service-icon">🕓</div>
+          <h3>Full local history</h3>
+          <p>Keep track of every encryption, decryption, and saved element — all stored locally.</p>
+        </div>
+
+        <div class="service">
+          <div class="service-icon">📧</div>
+          <h3>Verified identity encryption <span style="color:var(--gold);font-size:11px;font-weight:700;">PREMIUM</span></h3>
+          <p>Encrypt with password + verified email or phone number. Only the right person can decrypt.</p>
+        </div>
+
+        <div class="service">
+          <div class="service-icon">🤝</div>
+          <h3>Selective sharing <span style="color:var(--gold);font-size:11px;font-weight:700;">PREMIUM</span></h3>
+          <p>Grant access to specific encrypted items to chosen third parties — verified by email or phone.</p>
+        </div>
+
+        <div class="service">
+          <div class="service-icon">💬</div>
+          <h3>Encrypted messaging <span style="color:var(--gold);font-size:11px;font-weight:700;">PREMIUM</span></h3>
+          <p>Discuss and exchange messages in a fully encrypted channel. Nothing is readable outside.</p>
+        </div>
+
+        <div class="service">
+          <div class="service-icon">🏢</div>
+          <h3>Enterprise integration <span style="color:var(--gold);font-size:11px;font-weight:700;">PREMIUM</span></h3>
+          <p>Drop-in encrypted pipelines for businesses, stores, banks, and critical services.</p>
+        </div>
+
+        <div class="service">
+          <div class="service-icon">🦀</div>
+          <h3>Rust-powered engine</h3>
+          <p>The industry-leading language for safety, speed, and reliability. Built on solid ground.</p>
+        </div>
+
+        <div class="service">
+          <div class="service-icon">🧩</div>
+          <h3>Custom cryptography services <span style="color:var(--gold);font-size:11px;font-weight:700;">PREMIUM</span></h3>
+          <p>And many more encryption services tailored to your specific infrastructure and needs.</p>
+        </div>
+
+        <div class="service">
+          <div class="service-icon">📈</div>
+          <h3>From 1K to 1M characters <span style="color:var(--gold);font-size:11px;font-weight:700;">PREMIUM</span></h3>
+          <p>Free tier: up to 1,000 characters. Premium: up to 1,000,000 characters per encryption.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PRICING ============ -->
+    <section>
+      <div class="section-head">
+        <span class="kicker">Pricing</span>
+        <h2>Simple, honest pricing</h2>
+        <p>Start free. Go premium when you need more room.</p>
+      </div>
+
+      <div class="pricing">
+        <!-- FREE -->
+        <div class="price-card">
+          <div class="price-name">Free</div>
+          <div class="price-amount">$0 <small>/ forever</small></div>
+          <ul class="price-features">
+            <li>Up to <strong>1,000 characters</strong> per encryption</li>
+            <li>Password-protected blocks</li>
+            <li>Export as <code>.txt</code> or <code>.zip</code></li>
+            <li>100% offline — no account required</li>
+            <li>Rust engine</li>
+          </ul>
+        </div>
+
+        <!-- PREMIUM -->
+        <div class="price-card featured">
+          <div class="price-name">Premium</div>
+          <div class="price-amount">Custom <small>/ quote</small></div>
+          <ul class="price-features">
+                <li>Up to <strong>1,000,000 characters</strong></li>
+                <li>Integrated encrypted <strong>Cloud storage</strong></li>
+                <li>Full <strong>history</strong> local &amp; cloud</li>
+                <li>Encrypted <strong>messaging</strong> &amp; discussions</li>
+                <li>Verified sharing (<strong>email</strong> / <strong>phone</strong>)</li>
+                <li>Custom <strong>infrastructure</strong> &amp; deployment</li>
+                <li>Export as <strong>.md</strong> , <strong>.txt</strong>, <strong>.zip</strong></li>
+                <li>Encrypted <strong>API</strong> integration</li>
+                <li>Custom <strong>licence</strong> for professionals</li>
+                <li>Priority <strong>support</strong> &amp; dedicated contact</li>
+              </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT PREMIUM ============ -->
+    <section class="contact-premium">
+      <span class="kicker">Enterprise &amp; Professionals</span>
+      <h2>Need a tailored solution?</h2>
+      <p>
+        We build encrypted pipelines for businesses, banks, e-commerce, and
+        professionals. Tell us about your infrastructure and we'll send you a
+        custom quote — adapted to your specific needs.
+      </p>
+      <a class="contact-btn"
+         href="mailto:lancelotech@proton.com?subject=ABCrypter%20Premium%20Quote">
+        ✉ lancelotech@proton.com
+      </a>
+    </section>
+
+    <!-- ============ FOOTER ============ 
+        <a href="https://abcrypter.com">abcrypter.com</a>
+        <span class="sep">·</span>-->
+    <footer class="footer">
+      <div>
+        <a href="https://github.com/lancelotech">GitHub | About ABCrypter</a>
+        <span class="sep">·</span>
+        <a href="mailto:lancelotech@proton.com">lancelotech@proton.com</a>
+        <span class="sep">·</span>
+        <span>v1.0.0</span>
+      </div>
+      <div>&copy; 2026 ABCrypter — Cryptography Engineering Platform</div>
+    </footer>
+
+  </main>
+</body>
+</html>
