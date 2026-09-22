@@ -140,7 +140,7 @@ We build encrypted pipelines for **businesses, banks, e-commerce, and
 professionals**. Tell us about your infrastructure and we'll send you a
 custom quote — adapted to your specific needs.
 
-📧 **Contact:** [lancelotech@proton.com](mailto:lancelotech@proton.com)
+📧 **Contact:** [lancelotech@proton.me](mailto:lancelotech@proton.me)
 
 ---
 
@@ -160,7 +160,7 @@ custom quote — adapted to your specific needs.
 | 📦 Latest release | [github.com/lancelotech-app/abcrypter/releases](https://github.com/lancelotech-app/abcrypter/releases) |
 | 🐛 Report a bug | [Issues](https://github.com/lancelotech-app/abcrypter/issues) |
 | 💬 Discussions | [GitHub Discussions](https://github.com/lancelotech-app/abcrypter/discussions) |
-| 📧 Contact | [lancelotech@proton.com](mailto:lancelotech@proton.com) |
+| 📧 Contact | [lancelotech@proton.me](mailto:lancelotech@proton.me) |
 
 ---
 
@@ -169,7 +169,7 @@ custom quote — adapted to your specific needs.
 ABCrypter is **proprietary software**. All rights reserved.
 
 The Free tier is available at no cost for personal use. The Premium tier
-requires a commercial license — [contact us](mailto:lancelotech@proton.com)
+requires a commercial license — [contact us](mailto:lancelotech@proton.me)
 for details.
 
 ---
@@ -179,6 +179,8 @@ for details.
 **ABCrypter — Cryptography Engineering Platform**
 
 *Encrypt anything. Trust no one!*
+
+*Author - Rubain Folly Kouevi*
 
 Made with 🦀 by [Lancelotech](https://github.com/lancelotech-app)
 
