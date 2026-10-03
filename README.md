@@ -109,31 +109,6 @@ intercepted or stored in the cloud.
 
 ---
 
-## 💰 Pricing
-
-### Free — `$0 / forever`
-
-- Up to **5,000 characters** per encryption
-- Password-protected blocks
-- Export as `.txt` or `.zip`
-- 100% offline — no account required
-- Rust engine
-
-### Premium — `Custom / quote`
-
-- Up to **1,000,000 characters**
-- Integrated encrypted Cloud storage
-- Full history (local & cloud)
-- Encrypted messaging & discussions
-- Verified sharing (email / phone)
-- Custom infrastructure & deployment
-- Export as `.md`, `.txt`, `.zip`
-- Encrypted API integration
-- Custom license for professionals
-- Priority support & dedicated contact
-
----
-
 ## 🏢 Enterprise & Professionals
 
 We build encrypted pipelines for **businesses, banks, e-commerce, and
