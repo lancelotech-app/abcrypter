@@ -15,7 +15,7 @@ A quiet, offline platform for people and businesses who take their data seriousl
 [![Rust](https://img.shields.io/badge/built%20with-Rust-ff7043?style=flat-square&logo=rust&logoColor=white)](https://www.rust-lang.org/)
 [![License](https://img.shields.io/badge/license-Proprietary-3ecf8e?style=flat-square)](#license)
 
-[**Download**](#-download) · [**Features**](#-features) · [**Pricing**](#-pricing) · [**Enterprise**](#-enterprise--professionals) · [**Page**](https://lancelotech-app.github.io/abcrypter/)
+[**Download**](#-download) · [**Features**](#-features) · [**Enterprise**](#-enterprise--professionals) · [**Page**](https://lancelotech-app.github.io/abcrypter/)
 
 </div>
 
